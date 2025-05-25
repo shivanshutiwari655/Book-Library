@@ -1,0 +1,158 @@
+<!-- php & html ragister pages for new users using xammp php database -->
+<?php
+// Database connection details
+$servername = "localhost";
+$username = "root";         
+$password = "";            
+$dbname = "book_ragister";         
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}else{
+    echo "Conection is successful !";
+}
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Capture form data
+    $name =$_POST['name'];
+    $father_name = $_POST['father_name'];
+    $mother_name = $_POST['mother_name'];
+    $dob = $_POST['dob'];
+    $email = $_POST['email'];
+    $address =$_POST['address'];
+    $contact =$_POST['connect'];
+    $country =$_POST['country'];
+    $state = $_POST['state'];
+
+
+    // Prepare the SQL query to insert the data
+    $sql = "INSERT INTO 'book.ragister' (name, father_name, mother_name, dob,Email,address, contact, country, state,) 
+            VALUES ('$name', '$father_name', '$mother_name', '$dob','$email','$address' '$contact','$country', '$state')";
+
+    // Execute the query and check if it was successful
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    echo $sql;
+
+    // Close the connection
+    $conn->close();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ragister</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-right">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/products.html">Products</a></li>
+            <li><a href="/About.html">About</a></li>
+            <li><a href="/login.html">Login</a></li>
+            <li><a href="/Register.html">Create Account</a></li>
+        </div>
+    </nav>
+    <main>
+        <div class="ragister">
+        <div class="head">
+            <h3>Ragister for Join Sign_in</h3>
+        </div>
+
+
+        <form action="index.html" method="post">
+        <main style="margin-left: 200px;">
+
+            <label for="UserName"> Your Name :</label>
+                <input type="text" name="name" id="name" placeholder="enter the name" value="" autofocus >
+            <label for="Father Name">Father Name :</label>
+                <input type="text" name="father_name" id="father_name" placeholder="enter the father name" value="">
+            <label for="Mother Name">Mother Name :</label>
+                <input type="text" name="mother_name" id="mother_name" value="" placeholder="ente the mother name" >
+            <label for="Date of birth">Date Of birth :</label>
+                <input type="date" name="dob" id="dob" value="" placeholder="date of birth">
+                <label for="Address"> Address :</label>
+                <input type="text" value="" name="adress" id="address" placeholder="enter the address" required>
+            <label for="Email">Email : </label>
+                <input type="email" name="email" id="email" value="" placeholder="enter the email id" required>
+            <label for="Contect Number">Conect No. :</label>
+                <input type="number" value="" name="connect" id="contact" placeholder="enter the contect number " maxlength="10" minlength="10">
+            <label for="Country">Country</label>
+            <select name="country" id="country" >
+                <optgroup label="asia">
+                <option value="i">india</option>
+                <option value="s">srilanka</option>
+                <option value="p">pakistan</option>
+                <option value="m">maldeep</option>
+                <option value="c">chaina</option>
+                </optgroup>
+                <option value="u">usa</option>
+                <option value="a">austreliya</option>
+                <option value="ingland">ingland</option>
+            </select><br><br>
+
+            <label for="State">State</label>
+            <select name="state" id="state">
+                <option value="mp">madhya pradesh</option>
+                <option value="up">utter pradesh</option>
+                <option value="d">delhi</option>
+                <option value="j">jharkhand</option>
+                <option value="b">bihar</option><option value="i">india</option>
+                <option value="p">panjab</option>
+                <option value="k">karnatak</option>
+                <option value="m">manipur</option>
+                <option value="c">chandigad</option><option value="i">india</option>
+                <option value="s">sikkim</option>
+                <option value="ap">arunachal pradesh</option>
+                <option value="m">maharast</option>
+                <option value="h">hariyana</option>
+            </select><br>
+                <label for="photo">Add photo : </label>
+            <input type="file" placeholder="upload the photo" required>
+
+            <input style="background-color: rgb(31, 236, 8); height: 50px;width: 150px; color: red;font-size: x-large;margin-left: 100px;" type="submit" value="submit">
+            <input style="margin-top: 10px; background-color: rgb(31, 236, 8); height: 50px;width: 150px; color: red;font-size: x-large;margin-left:100px;" type="reset" value="reset">
+        </form>
+    </div>
+    </main>
+    <div class="account">
+        <p>Have an Account ? <a href="login.html">Log_in</a></p>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h2>Contact Us</h2>
+                <p>Phone: +123-456-7890</p>
+                <p>Email: support@bookszone.com</p>
+                <p>Address: 123 Library Street, Booktown, BK 45678</p>
+            </div>
+            <div class="footer-section">
+                <h2>Follow Us</h2>
+                <p><a href="#"> Facebook </a> | |<a href="#"> Instagram </a> || <a href="#"> Twitter  </a> <br>
+                Author:<a href="https://sudeep-portfolio">Sudeep Acahrjee</a> ||<br>
+                    <a href="sudeepacharjeegp@gmai.com">sudeepacharjee@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h2>Library Information</h2>
+                <p>Opening Hours: Mon-Fri 9 AM - 8 PM | Sat-Sun 10 AM - 6 PM</p>
+                <p>Membership: Free for students | $10/month for adults</p>
+                <p>Resources: E-books, Audiobooks, Study Rooms, WiFi</p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>
